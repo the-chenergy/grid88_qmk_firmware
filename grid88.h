@@ -8,6 +8,8 @@
 #ifndef GRID88_H
 # define GRID88_H
 
+# include "quantum.h"
+
 # define XXX KC_NO
 
 # define KEY_MAP(                                                              \

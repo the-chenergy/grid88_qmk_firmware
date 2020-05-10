@@ -5,20 +5,15 @@
  * u 05/10/20
  */
 
-/** the ids of the leds used as indicators for activating different layers. */
-static const int caps_led_indicator = 6;
-static const int num_led_indicator  = 5;
-static const int fn_led_indicator   = 7;
-
 /** define led layers. */
 static const rgblight_segment_t PROGMEM caps_led_layer[] =
-  RGBLIGHT_LAYER_SEGMENTS({caps_led_indicator, 1, HSV_CYAN});
+  RGBLIGHT_LAYER_SEGMENTS({6, 1, HSV_CYAN});
 
 static const rgblight_segment_t PROGMEM num_led_layer[] =
-  RGBLIGHT_LAYER_SEGMENTS({num_led_indicator, 1, HSV_YELLOW});
+  RGBLIGHT_LAYER_SEGMENTS({5, 1, HSV_YELLOW});
 
 static const rgblight_segment_t PROGMEM fn_led_layer[] =
-  RGBLIGHT_LAYER_SEGMENTS({fn_led_indicator, 1, HSV_MAGENTA});
+  RGBLIGHT_LAYER_SEGMENTS({7, 1, HSV_MAGENTA});
 
 static const rgblight_segment_t* const PROGMEM led_layers[] =
   RGBLIGHT_LAYERS_LIST(caps_led_layer, num_led_layer, fn_led_layer);
@@ -31,8 +26,8 @@ void keyboard_post_init_user(void)
 /** register led layers. */
 layer_state_t layer_state_set_user(layer_state_t state)
 {
-  rgblight_set_layer_state(NUM, layer_state_cmp(state, NUM));
-  rgblight_set_layer_state(FN, layer_state_cmp(state, FN));
+  rgblight_set_layer_state(_N, layer_state_cmp(state, _N));
+  rgblight_set_layer_state(_F, layer_state_cmp(state, _F));
   
   return state;
 }

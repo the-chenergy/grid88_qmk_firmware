@@ -4,9 +4,14 @@
 # u 05/10/20
 
 # controller configs
-MCU = atmega32u4
+MCU   = atmega32u4
+F_CPU = 16000000
+ARCH  = AVR8
+F_USB = $(F_CPU)
+
 OPT_DEFS += -DINTERRUPT_CONTROL_ENDPOINT
-OPT_DEFS += -DBOOTLOADER_SIZE=4096
+
+BOOTLOADER = halfkay
 
 # build options
 AUDIO_ENABLE      = no
@@ -23,5 +28,5 @@ MOUSEKEY_ENABLE   = yes
 NKRO_ENABLE       = yes
 RGBLIGHT_ENABLE   = yes
 SLEEP_LED_ENABLE  = no
-UNICODE_ENABLE    = yes
+UNICODE_ENABLE    = no
 UNICODEMAP_ENABLE = yes
