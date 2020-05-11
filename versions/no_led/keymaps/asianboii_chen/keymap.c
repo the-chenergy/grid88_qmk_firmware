@@ -95,28 +95,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * play.
  ******************************************************************************/
 
-/** the led layers used by this keyboard (caps, numpad, function). */
-enum led_layers { L_C, L_N, L_F };
+/* /\** the led layers used by this keyboard (caps, numpad, function). *\/ */
+/* enum led_layers { L_C, L_N, L_F }; */
 
-/** define the led layers. */
+/* /\** define the led layers. *\/ */
 
-static const rgblight_segment_t PROGMEM caps_led_layer[] =
-  RGBLIGHT_LAYER_SEGMENTS({6, 1, HSV_CYAN});
+/* static const rgblight_segment_t PROGMEM caps_led_layer[] = */
+/*   RGBLIGHT_LAYER_SEGMENTS({6, 1, HSV_CYAN}); */
 
-static const rgblight_segment_t PROGMEM num_led_layer[] =
-  RGBLIGHT_LAYER_SEGMENTS({5, 1, HSV_YELLOW});
+/* static const rgblight_segment_t PROGMEM num_led_layer[] = */
+/*   RGBLIGHT_LAYER_SEGMENTS({5, 1, HSV_YELLOW}); */
 
-static const rgblight_segment_t PROGMEM fn_led_layer[] =
-  RGBLIGHT_LAYER_SEGMENTS({7, 1, HSV_MAGENTA});
+/* static const rgblight_segment_t PROGMEM fn_led_layer[] = */
+/*   RGBLIGHT_LAYER_SEGMENTS({7, 1, HSV_MAGENTA}); */
 
-static const rgblight_segment_t* const PROGMEM led_layers[] =
-  RGBLIGHT_LAYERS_LIST(caps_led_layer, num_led_layer, fn_led_layer);
+/* static const rgblight_segment_t* const PROGMEM led_layers[] = */
+/*   RGBLIGHT_LAYERS_LIST(caps_led_layer, num_led_layer, fn_led_layer); */
 
-/** runs after the keyboard initializes. registers the led layers. */
-void keyboard_post_init_user(void)
-{
-  rgblight_layers = led_layers;
-}
+/* /\** runs after the keyboard initializes. registers the led layers. *\/ */
+/* void keyboard_post_init_user(void) */
+/* { */
+/*   rgblight_layers = led_layers; */
+/* } */
 
 /*******************************************************************************
  * event callbacks / special function definitions
@@ -152,34 +152,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record)
   }
 }
 
-/**
- * processes the event where a one-shot (aka sticky) layer is activated or
- * deactivated.
- * 
- * @param  layer  the id of the layer being activated, or 0 if a one-shot layer
- *                is being deactivated.
- */
-void oneshot_layer_changed_user(uint8_t layer)
-{
-  /* only light up the function layer indicator when the one-shot layer is
-   * on (by doing the light-up check here rather than in
-   * `layer_state_set_user`. */
-  if (layer == K_F)
-    rgblight_set_layer_state(L_F, true);
-}
+/* /\** */
+/*  * processes the event where a one-shot (aka sticky) layer is activated or */
+/*  * deactivated. */
+/*  * */
+/*  * @param  layer  the id of the layer being activated, or 0 if a one-shot layer */
+/*  *                is being deactivated. */
+/*  *\/ */
+/* void oneshot_layer_changed_user(uint8_t layer) */
+/* { */
+/*   /\* only light up the function layer indicator when the one-shot layer is */
+/*    * on (by doing the light-up check here rather than in */
+/*    * `layer_state_set_user`. *\/ */
+/*   if (layer == K_F) */
+/*     rgblight_set_layer_state(L_F, true); */
+/* } */
 
-/**
- * processes the event that a key layer is activated or deactivated.
- * 
- * @param  state  object with info of each key layer.
- */
-layer_state_t layer_state_set_user(layer_state_t state)
-{
-  if (!layer_state_cmp(state, K_F))
-    rgblight_set_layer_state(L_F, false);
+/* /\** */
+/*  * processes the event that a key layer is activated or deactivated. */
+/*  *  */
+/*  * @param  state  object with info of each key layer. */
+/*  *\/ */
+/* layer_state_t layer_state_set_user(layer_state_t state) */
+/* { */
+/*   if (!layer_state_cmp(state, K_F)) */
+/*     rgblight_set_layer_state(L_F, false); */
   
-  return state;
-}
+/*   return state; */
+/* } */
 
 /**
  * processes the event where a built-in indicator changes its state. built-in
@@ -192,8 +192,8 @@ layer_state_t layer_state_set_user(layer_state_t state)
  */
 bool led_update_user(led_t led_state)
 {
-  rgblight_set_layer_state(L_C, led_state.caps_lock);
-  rgblight_set_layer_state(L_N, led_state.num_lock);
+  /* rgblight_set_layer_state(L_C, led_state.caps_lock); */
+  /* rgblight_set_layer_state(L_N, led_state.num_lock); */
 
   /* activate the numpad layer according to the state of numlock. */
   if (led_state.num_lock)

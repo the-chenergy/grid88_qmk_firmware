@@ -2,7 +2,7 @@
  * defines the key layout for grid88, a custom handwired keyboard.
  * 
  * qianlang chen
- * a 05/09/20
+ * m 05/11/20
  */
 
 #ifndef GRID88_H
@@ -12,7 +12,12 @@
 
 # define XXX KC_NO
 
-# define KEY_MAP(                                                              \
+/**
+ * generates the layout for a key layer.
+ * 
+ * @note  the top half defines the left-hand keys.
+ */
+# define LAYOUT(                                                               \
     K00, K01, K02, K03, K04, K05, K06,                                         \
     K10, K11, K12, K13, K14, K15, K16,                                         \
     K20, K21, K22, K23, K24, K25, K26,                                         \

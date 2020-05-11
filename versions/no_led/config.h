@@ -32,29 +32,29 @@
 
 /* led strip configs */
 
-# define RGB_DI_PIN D6
+/* # define RGB_DI_PIN D6 */
 
-# ifdef RGB_DI_PIN
-#   define RGBLIGHT_HUE_STEP   16
-#   define RGBLIGHT_SAT_STEP   32
-#   define RGBLIGHT_VAL_STEP   21
-#   define RGBLIGHT_LIMIT_VAL  84
-#   define RGBLIGHT_ANIMATIONS
+/* # ifdef RGB_DI_PIN */
+/* #   define RGBLIGHT_HUE_STEP   16 */
+/* #   define RGBLIGHT_SAT_STEP   32 */
+/* #   define RGBLIGHT_VAL_STEP   21 */
+/* #   define RGBLIGHT_LIMIT_VAL  84 */
+/* #   define RGBLIGHT_ANIMATIONS */
 
-#   define RGBLIGHT_LAYERS
+/* #   define RGBLIGHT_LAYERS */
 
-#   define RGBLED_NUM 24
+/* #   define RGBLED_NUM 24 */
 
-/* optionally define the led layout here.
- * 
- * if no custom layout is defined, this layout should be assumed:
- *   L02  L01  L00  L0B        L10  L1B  L1A  L19
- *   L03            L0A        L11            L18
- *   L04            L09        L12            L17
- *   L05  L06  L07  L08        L13  L14  L15  L16
- */
+/* /\* optionally define the led layout here. */
+/*  *  */
+/*  * if no custom layout is defined, this layout should be assumed: */
+/*  *   L02  L01  L00  L0B        L10  L1B  L1A  L19 */
+/*  *   L03            L0A        L11            L18 */
+/*  *   L04            L09        L12            L17 */
+/*  *   L05  L06  L07  L08        L13  L14  L15  L16 */
+/*  *\/ */
 
-# endif
+/* # endif */
 
 /* additional keyboard features */
 
