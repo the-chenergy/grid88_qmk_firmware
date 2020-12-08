@@ -2,7 +2,7 @@
  * defines pin configurations for grid88, a custom handwired keyboard.
  *
  * qianlang chen
- * m 12/07/20
+ * t 12/08/20
  */
 
 #ifndef CONFIG_H
@@ -45,6 +45,7 @@
 
 #define RGBLIGHT_LAYERS
 #define RGBLIGHT_LAYER_BLINK
+#define RGBLIGHT_SLEEP
 
 /* additional keyboard features */
 
@@ -59,6 +60,5 @@
 
 #define TAPPING_TERM 174
 #define PERMISSIVE_HOLD
-#define IGNORE_MOD_TAP_INTERRUPT
 
 #endif /* CONFIG_H */

@@ -1,12 +1,12 @@
 /**
  * defines the layers for grid88, a custom handwired keyboard.
  *
- * v1.0:
- *   - added support of the asianboii's ui layout.
+ * v0.3:
+ *   - added basic support of the asianboii's ui layout.
  *   - fixed numpad problem of outputting unicode junk for punctuation.
  *
  * qianlang chen
- * m 12/07/20
+ * t 12/08/20
  *
  * ------------------------
  *
@@ -28,10 +28,7 @@ enum key_layers { K_B, K_A, K_As, K_Am, K_Af, K_N, K_F };
  * the keycodes used in custom functions to communicate directly between a
  * keyboard layer and the key event-processing function.
  */
-enum custom_keycodes {
-  /* release all modifiers. */
-  C_RMODS,
-};
+enum custom_keycodes { C_XXXX = SAFE_RANGE, C_KAON, C_KAOF, C_SKAS, C_RMOD };
 
 /* clang-format off */
 
@@ -63,10 +60,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_CAPS,  LT(K_Am, KC_TAB),
                         KC_QUOT,  KC_COMM,  KC_DOT,   KC_P,       KC_Y,
     KC_NLCK,  KC_MINS,  KC_A,     KC_O,     KC_E,     KC_I,       KC_U,
-    OSL(K_F), LT(K_Am, KC_ESC),
+    OSL(K_F), LM(K_Am, MOD_LCTL),
                         KC_SCLN,  KC_Q,     KC_J,     KC_K,       KC_X,
     LM(K_Am, MOD_LGUI),
-              LM(K_Af, MOD_LCTL),
+              LT(K_Af, KC_ENT),
                         KC_HOME,  KC_PGUP,  KC_END,   LT(K_As, KC_SPC),
                                   KC_PGDN,            LM(K_Am, MOD_LALT),
                                                              LM(K_Am, MOD_LCTL),
@@ -98,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_7,       KC_8,      KC_9,     KC_0,     S(KC_6),  KC_GRV,     S(KC_BSPC),
     S(KC_F),    S(KC_G),   S(KC_C),  S(KC_R),  S(KC_L),  S(KC_5),    S(KC_2),
     S(KC_D),    S(KC_H),   S(KC_T),  S(KC_N),  S(KC_S),  S(KC_BSLS), S(KC_ENT),
-    S(KC_B),    S(KC_M),   S(KC_W),  S(KC_V),  S(KC_Z),  KC_RCTL,    S(KC_PSCR),
+    S(KC_B),    S(KC_M),   S(KC_W),  S(KC_V),  S(KC_Z),  _______,    S(KC_PSCR),
                 _______,    S(KC_LEFT),S(KC_UP),S(KC_RGHT),_______,   _______,
     _______,    S(KC_BSPC),           S(KC_DOWN)
   ),
@@ -167,15 +164,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_BSPC,  KC_EQL,   KC_MINS,  KC_0,     KC_9,     KC_8,     KC_7,
     KC_RBRC,  KC_LBRC,  KC_P,     KC_O,     KC_I,     KC_U,     KC_Y,
     KC_ENT,   KC_QUOT,  KC_SCLN,  KC_L,     KC_K,     KC_J,     KC_H,
-    _______,  _______,  KC_SLSH,  KC_DOT,   KC_COMM,  KC_M,     KC_N,
+    _______,  KC_LSFT,  KC_SLSH,  KC_DOT,   KC_COMM,  KC_M,     KC_N,
     RGB_VAD,  RGB_VAI,  KC_LEFT,  KC_UP,    KC_RGHT,  RGB_MOD,
                                   KC_DOWN,            RGB_HUI,  RGB_SAI,
     
-    TG(K_A),  C_RMODS,  _______,  _______,  KC_SLCK,  KC_PAUS,  KC_INS,
+    C_KAON,   C_KAOF,   C_SKAS,   C_RMOD,   KC_SLCK,  KC_PAUS,  KC_INS,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  _______,  _______,  _______,  _______,  _______,  RESET,
+    _______,  _______,  _______,  _______,  _______,  KC_RSFT,  RESET,
               KC_MPLY,  KC_MPRV,  KC_VOLU,  KC_MNXT,  KC_APP,   _______,
     KC_MSEL,  KC_MUTE,            KC_VOLD
   ),
@@ -247,14 +244,6 @@ static const int BLINK_DURATION = 1042;
  */
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
-    /* let reset only work with fn+lshift+rshift. */
-    case RESET: {
-      if (record->event.pressed)
-        return get_mods() == ((MOD_BIT(KC_LSFT)) | MOD_BIT(KC_RSFT));
-
-      return true;
-    }
-
     /* let the second press of the fn-key disable the oneshot layer. */
     case OSL(K_F): {
       if (record->event.pressed && layer_state_is(K_F)) {
@@ -265,22 +254,46 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
       return true;
     }
 
-    /* display an led signal when the asui is toggled. */
-    case TG(K_A): {
+    /********************************
+     * define custom key-functions.
+     *******************************/
+
+    /* turn the asui on. */
+    case C_KAON: {
+      layer_on(K_A);
+      layer_off(K_F);
+
+      rgblight_blink_layer(on_off_layers[1], BLINK_DURATION);
+
+      return false;
+    }
+
+    /* turn the asui off. */
+    case C_KAOF: {
+      layer_off(K_A);
       layer_off(K_As);
       layer_off(K_Am);
       layer_off(K_Af);
-      // layer_off(K_F);
+      layer_off(K_F);
 
-      rgblight_blink_layer(on_off_layers[!layer_state_is(K_A)], BLINK_DURATION);
+      rgblight_blink_layer(on_off_layers[0], BLINK_DURATION);
 
-      return true;
+      return false;
     }
 
-    /* define custom key-functions. */
-    case C_RMODS: {
+    /* show by blinking accordingly whether the asui is currently on. */
+    case C_SKAS: {
+      rgblight_blink_layer(on_off_layers[layer_state_is(K_A)], BLINK_DURATION);
+      layer_off(K_F);
+
+      return false;
+    }
+
+    /* release all modifiers. */
+    case C_RMOD: {
       clear_mods();
       layer_off(K_F);
+
       return false;
     }
 
