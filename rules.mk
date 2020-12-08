@@ -1,7 +1,7 @@
 # defines rules for grid88, a custom handwired keyboard.
 #
 # qianlang chen
-# u 05/10/20
+# m 12/07/20
 
 # controller configs
 MCU   = atmega32u4
@@ -24,9 +24,9 @@ EXTRAKEY_ENABLE   = yes
 FAUXCLICKY_ENABLE = no
 HD44780_ENABLE    = no
 MIDI_ENABLE       = no
-MOUSEKEY_ENABLE   = yes
+MOUSEKEY_ENABLE   = no
 NKRO_ENABLE       = yes
-RGBLIGHT_ENABLE   = no # <---
+RGBLIGHT_ENABLE   = yes
 SLEEP_LED_ENABLE  = no
 UNICODE_ENABLE    = no
-UNICODEMAP_ENABLE = yes
+UNICODEMAP_ENABLE = no
