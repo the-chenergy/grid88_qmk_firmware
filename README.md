@@ -74,11 +74,11 @@ I designed the layout of this keyboard to better fit the principles of the [Asia
 
 This is the layout on how I think a normal person would use it:
 
-![](https://raw.githubusercontent.com/asianboii-chen/AsianboiisUI/master/4.1/custum_kb_normal_layout.png)
+![](https://raw.githubusercontent.com/asianboii-chen/AsianboiisUI/master/OldVersions/4.1/custum_kb_normal_layout.png)
 
 It's perfectly serviceable and has most of the advantages that those ergonomic keyboards out there have. It not only brings the most-used pinkie-keys (Tab, Shift, Enter, and Backspace) under the thumbs, but it also makes the Ctrl keys more naturally pressed by the palms. Its split feature also allows one to bring their mouse closer to the keyboard. However, as advertised, I don't use the Qwerty layout anymore, so here's the layout in my mind: *(if you think it's confusing, just know that I'm weird)*
 
-![](https://raw.githubusercontent.com/asianboii-chen/AsianboiisUI/master/4.1/custom_kb_basic_layout.png)
+![](https://raw.githubusercontent.com/asianboii-chen/AsianboiisUI/master/OldVersions/4.1/custom_kb_basic_layout.png)
 
 Check out [this page](https://github.com/asianboii-chen/AsianboiisUI/blob/master/README.md) for more information on why I invented my own funny layout.
 
