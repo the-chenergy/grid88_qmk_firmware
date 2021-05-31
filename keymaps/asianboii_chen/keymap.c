@@ -1,17 +1,21 @@
 /**
  * defines the layers for grid88, a custom handwired keyboard.
  *
+ * v0.4:
+ *   - updated the layout and fixed the tap-hold repeat issue.
+ *
+ * qianlang chen
+ * m 05/31/21
+ *
+ * ------------------------
+
  * v0.3:
  *   - added basic support of the asianboii's ui layout.
  *   - fixed numpad problem of outputting unicode junk for punctuation.
  *
- * qianlang chen
  * t 12/08/20
  *
- * ------------------------
- *
- * initial version
- *
+ * v0.2
  * m 05/11/20
  */
 
@@ -63,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     OSL(K_F), LM(K_Am, MOD_LCTL),
                         KC_SCLN,  KC_Q,     KC_J,     KC_K,       KC_X,
     LM(K_Am, MOD_LGUI),
-              LT(K_Af, KC_ENT),
+              LT(K_Af, KC_TAB),
                         KC_HOME,  KC_PGUP,  KC_END,   LT(K_As, KC_SPC),
                                   KC_PGDN,            LM(K_Am, MOD_LALT),
                                                              LM(K_Am, MOD_LCTL),
@@ -84,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* the asianboii's ui layout shifted layer. */
   [K_As] = LAYOUT(
     S(KC_ESC),  S(KC_F1),  S(KC_F2),   S(KC_F3),   S(KC_F4),  S(KC_F5),S(KC_F6),
-    S(KC_GRV),  KC_1,      KC_2,       KC_3,       KC_4,      KC_5,     KC_6,
+    KC_GRV,     KC_1,      KC_2,       KC_3,       KC_4,      KC_5,     KC_6,
     S(KC_CAPS), S(KC_TAB), S(KC_QUOT), S(KC_SLSH), S(KC_1),   S(KC_P),  S(KC_Y),
     S(KC_NLCK), S(KC_EQL), S(KC_A),    S(KC_O),    S(KC_E),   S(KC_I),  S(KC_U),
     OSL(K_F),   _______,   S(KC_SCLN), S(KC_Q),    S(KC_J),   S(KC_K),  S(KC_X),
@@ -92,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                        S(KC_PGDN),            _______,  _______,
     
     S(KC_F7),   S(KC_F8),  S(KC_F9), S(KC_F10),S(KC_F11),S( KC_F12), S(KC_DEL),
-    KC_7,       KC_8,      KC_9,     KC_0,     S(KC_6),  KC_GRV,     S(KC_BSPC),
+    KC_7,       KC_8,      KC_9,     KC_0,     S(KC_6),  S(KC_GRV),  S(KC_BSPC),
     S(KC_F),    S(KC_G),   S(KC_C),  S(KC_R),  S(KC_L),  S(KC_5),    S(KC_2),
     S(KC_D),    S(KC_H),   S(KC_T),  S(KC_N),  S(KC_S),  S(KC_BSLS), S(KC_ENT),
     S(KC_B),    S(KC_M),   S(KC_W),  S(KC_V),  S(KC_Z),  _______,    S(KC_PSCR),
